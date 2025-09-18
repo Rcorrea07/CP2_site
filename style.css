@@ -1,0 +1,534 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+html, body {
+  background-color: #202024; /* usei isso para ficar cinza no mobile */
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.body{ 
+  font-family:'Roboto', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 160%;
+  color: #ffffff;
+
+  background: linear-gradient( /* Condição para que fique dividido as cores do site */
+    to bottom,
+    #121214 0px,      
+    #121214 212px,    
+    #202024 212px,    
+    #202024 100%    
+  );
+}
+
+.main-container {
+  max-width: calc(100% - 320px); /* Para ter 160px de cada lado */
+  margin-left: auto;   /* Para centralizar o container */
+  margin-right: auto;  /* Para centralizar o container */
+
+  padding-top: 40px;  
+  padding-bottom: 120px; 
+}
+
+.header{
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  height: 50px;
+} 
+
+.button{
+  background-color: #FAAE2B; 
+  color: #ffffff;
+  border-radius: 10px;
+  width: 152px;
+  font-family:'Roboto', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer; /* pra ficar uma mão ao passar por cima */
+  border: 1px solid transparent; /* Borda transparente (tava ficando com uma borda sem isso) */
+}
+
+.button:hover{ /* condição só pra quando o mouse passa por cima do botão */
+  opacity: 0.7;
+  scale: 1.1;
+  transition: ease-in-out;
+  transition-duration: 0.3s;
+}
+
+.lupa:hover{
+  opacity: 0.7;
+  scale: 1.5;
+  transition: ease-in-out;
+  transition-duration: 0.3s;
+}
+
+.dashboard{
+  margin-top: 40px;
+  display: flex;
+  flex-direction: row;
+  gap: 45px; /* Cria um espaço entre os itens do flex */
+}
+
+.quanto {
+  display: flex;
+  flex-direction: column; 
+  background-color: #323238; 
+  height: 137px;
+  border-radius: 5px; 
+  width: 100%; /* Cards ocupam largura total */
+}
+
+.titsimb {
+  display: flex;
+  justify-content: space-between; /* Empurra o título para a esquerda e o ícone para a direita */
+  align-items: center; /* Alinha verticalmente o título e o ícone */
+  height: 10px;
+  padding: 40px 24px 0px 24px ;
+}
+
+.valor { 
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 140%;
+  padding: 32px 24px 32px 24px;
+}
+
+.quanto.total {
+  background-color: #FAAE2B; 
+}
+
+.busca{
+  margin-top: 64px;
+  display: flex;
+  gap: 16px;
+  flex-direction: row;
+  justify-content: space-between; 
+  align-items: center; 
+}
+
+/* ENTRADA E O BUSCA */
+
+/* Campo de busca */
+.input-busca {
+  flex-grow: 1; /* Faz a entrada ocupar o máximo de espaço */
+  background-color: #121214;
+  border-radius: 6px;
+  border: 1px solid transparent; 
+  padding: 16px;
+  color: #ffffff; 
+  font-size: 16px;
+}
+
+.input-busca::placeholder {
+    color: #ffffff;
+}
+
+/* Botão de busca */
+.search-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: transparent;
+  border: 1px solid #FAAE2B;
+  border-radius: 6px;
+  padding: 14px 32px;
+  color: #FAAE2B;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s; 
+}
+
+.search-button:hover {
+    color: #ffffff;
+}
+
+/* Tabela */
+.tabela{
+  margin-top: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px; 
+}
+
+/* Cada linha da tabela */
+.linha-tabela {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #29292E;
+  height: 66px;
+  padding: 0px 32px 0px 32px;
+  border-radius: 5px;
+}
+
+/* Alinhamento das colunas */
+.linha-tabela p:nth-child(1) { /* Primeira coluna da tabela */
+  flex: 2; /* Ocupa mais espaço */
+  text-align: left;
+}
+
+.linha-tabela p:nth-child(2) { /* Valor */
+  flex: 1;
+  text-align: left;
+}
+
+.linha-tabela p:nth-child(3) { /* Categoria */
+  flex: 1;
+  text-align: left;
+}
+
+.linha-tabela p:nth-child(4) { /* Data */
+  flex: 1;
+  text-align: right;
+}
+
+/* Cores para valores positivos e negativos */
+.positivo {
+  color: #00B37E; 
+}
+
+.negativo {
+  color: #F75A68; 
+}
+
+/* Popup */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Fundo escurecido */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Popup acima de tudo */
+  display: none; /* Inicialmente oculto */
+}
+
+.modal-content {
+  background-color: #202024;
+  padding: 30px; /* Preenchimento interno */
+  border-radius: 8px;
+  width: 90%;
+  max-width: 550px; /* Largura máxima do popup */
+  box-shadow: 0 5px 15px rgba(255, 196, 0, 0.3);
+  position: relative;
+  display: flex; /* Para organizar o cabeçalho e formulário */
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffffff; /* Cor do título */
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.modal-close {
+  color: #ffffff;
+  font-size: 2rem; /* Tamanho do X */
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modal-input {
+  background-color: #121214;
+  border: 1px solid transparent; 
+  border-radius: 6px;
+  padding: 16px;
+  color: #C4C4CC;
+  font-size: 16px;
+  width: 100%;
+}
+
+.modal-input::placeholder {
+  color: #ffffff;
+}
+
+.transaction-type-selection {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.radio-button-label {
+  flex: 1;
+  display: block; 
+}
+
+.radio-button-label input[type="radio"] {
+  display: none; 
+}
+
+.custom-radio-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #29292E; 
+  color: #ffffff;
+  font-weight: 500;
+  gap: 8px;
+  transition: background-color 0.2s ease, color 0.2s ease, border 0.2s ease;
+}
+
+/* Estilos para quando o radio button está selecionado */
+.radio-button-label input[type="radio"]:checked + .custom-radio-button.entrada-type {
+  color: #00B37E; /* Cor do texto verde */
+  border: 1px solid #00B37E; /* Borda verde */
+}
+
+.radio-button-label input[type="radio"]:checked + .custom-radio-button.saida-type {
+  color: #F75A68; /* Cor do texto vermelho */
+  border: 1px solid #F75A68; /* Borda vermelha */
+}
+
+/* Hover effects */
+.custom-radio-button:hover:not(.radio-button-label input[type="radio"]:checked + .custom-radio-button) {
+  background-color: #323238; /* Um pouco mais claro não estiver selecionado */
+}
+
+.modal-submit-button {
+  background-color: #FAAE2B; 
+  color: #ffffff;
+  border-radius: 6px;
+  width: 100%; /* Ocupa a largura total do formulário */
+  padding: 16px 0; 
+  font-family:'Roboto', Arial, sans-serif;
+  font-size: 18px; /* Tamanho da fonte um pouco maior */
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  margin-top: 10px; /* Espaçamento superior */
+}
+
+.modal-submit-button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px); /* Efeito de elevação */
+}
+/* Fim Popup*/
+
+/* Esconde em telas maiores (desktop) */
+.transacao-info {
+  display: none;
+}
+
+.dashboard-scroll{
+  display: none;
+}
+
+.ultima-transacao{
+  display: none;
+}
+
+/* --- ESTILOS PARA MOBILE --- */
+@media (max-width: 768px) {
+
+  .main-container {
+    max-width: calc(100% - 40px); /* Margem lateral de 20px de cada lado */
+    padding-top: 20px; 
+    padding-bottom: 40px; 
+  }
+
+  .header {
+    flex-direction: row; /* Empilha o logo e o botão */
+    align-items: center; /* Centraliza horizontalmente */
+    height: auto; /* Deixa a altura ajustar automaticamente */
+    gap: 20px; /* Espaço entre o logo e o botão */
+  }
+
+  .button {
+    width: 100%; 
+    max-width: 200px;
+    padding: 10px 0; 
+  }
+
+  /* Dashboard (Entradas, Saídas, Total) */
+  .dashboard {
+    display: flex;
+    flex-direction: row;
+    margin-top: 73px;
+    gap: 20px; 
+    overflow-x: auto; /* Permite scroll horizontal */
+    overflow-y: hidden; /* Remove scroll vertical */
+  }
+
+  /* Remove a scrollbar */
+  .dashboard::-webkit-scrollbar {
+    display: none;
+  }
+
+  .quanto {
+    height: auto; /* Muda de 137px fixo para automático */
+    flex-shrink: 0; /* Impede que os cards encolham */
+    padding-bottom: 16px; /* Adiciona espaço embaixo */
+  }
+
+    /* Estilo da frase "última transação" */
+  .ultima-transacao {
+    display: block; /* Mostra no mobile */
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #ffffff; /* Cor mais suave/acinzentada */
+    padding: 0px 24px; /* Alinha com o valor */
+    margin-top: -16px; /* Aproxima do valor */
+  }
+
+  /* Título "Transações" */
+  .transacao-info {
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    font-weight: 500;
+    color: #ffffff;
+    font-size: 16px;
+  }
+
+  /* Seção de Busca */
+  .busca {
+    flex-direction: row;
+    gap: 15px; 
+    margin-top: 20px; 
+  }
+
+  .search-button {
+    justify-content: center;
+    padding: 14px; 
+  }
+
+    /*Transações 4 itens */
+  .transacao-info {
+    display: flex; /* Habilita o display flex */
+    justify-content: space-between; /* Alinha os itens nas extremidades */
+    align-items: center; /* Centraliza verticalmente */
+    margin-top: 20px; /* Espaçamento da seção de busca */
+    font-weight: 500;
+    color: #ffffff;
+    font-size: 16px;
+  }
+
+  .transacao-info span {
+    color: #ffffff;
+    font-weight: 400;
+  }
+
+
+  /* Tabela de Transações */
+  .tabela {
+    margin-top: 20px; /* Ajusta a margem superior */
+  }
+
+  .linha-tabela {
+    display: grid;
+    /* Define duas colunas. A primeira ocupa 1 parte, a segunda 1 parte. */
+    grid-template-columns: 1fr auto;
+    /* Define as áreas para cada item */
+    grid-template-areas:
+      "descricao descricao"
+      "valor     valor"
+      "categoria      data";
+    gap: 5px 10px; 
+    height: auto; 
+    padding: 16px 20px;
+
+  }
+
+  .linha-tabela p:nth-child(1) {
+    grid-area: descricao; /* Descrição ocupa as duas colunas */
+    font-weight: 500;
+    font-size: 1.1em;
+    margin-bottom: 5px; 
+    text-align: left !important; /* Garante alinhamento à esquerda */
+  }
+
+  .linha-tabela p:nth-child(2) {
+    grid-area: valor; 
+    text-align: left !important;
+    font-size: 1.1em; 
+  }
+
+  .linha-tabela p:nth-child(3) {
+    
+    grid-area: categoria; 
+    text-align: left !important;
+    font-family:'Roboto', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 160%;
+    color: #ffffff;
+    padding-left: 20px;
+    text-align: left !important;
+    position: relative; /* Para posicionar a imagem */
+  }
+
+    /* Cria e posiciona a "mini-caixa" para o símbolo */
+  .linha-tabela p:nth-child(3)::before {
+    content: ""; /* O conteúdo é vazio, pois a imagem é o "fundo" */
+    position: absolute;
+    left: 0; 
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px; 
+    height: 16px;
+    background-image: url('img/Tipo=tag-simple-regular.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .linha-tabela p:nth-child(4) {
+    grid-area: data;
+    text-align: right !important;
+    font-family:'Roboto', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 160%;
+    color: #ffffff;
+
+  }
+
+  /* Popup mobile */
+  .modal-content {
+    padding: 20px; 
+    margin: 20px;
+  }
+
+  .transaction-type-selection {
+    flex-direction: row; 
+    gap: 10px; 
+  }
+
+  .custom-radio-button {
+    padding: 12px 15px;
+  }
+
+  .modal-submit-button {
+    font-size: 16px; 
+    padding: 14px 0;
+  }
+}

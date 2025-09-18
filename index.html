@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projeto CP2</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="arquivo.js" defer></script>
+</head>
+<body class="body">
+  
+  <div class="main-container"> <!-- Tive que criar para organizar a organização do site -->
+    
+    <header class="header">
+      <img src="img/LogoCp2_branco_3.png" alt="LogoCp2">
+      <button class="button">Nova transição</button>
+    </header>
+    
+    <!--  Dashboard  -->
+    <div class="dashboard">
+
+      <div class="dashboard-scroll"></div>
+        <!-- Entradas -->
+        <div class="quanto entrada"> 
+          <div class="titsimb">
+            <p>Entradas</p>
+            <img src="img/Tipo=arrow-circle-up-regular.png" alt="">
+          </div>
+          <p class="valor"> R$ 17.400,00 </p>
+          <p class="ultima-transacao">Última transação em 13 de abril</p>
+        </div> 
+
+        <!-- Saidas -->
+        <div class="quanto saida">
+          <div class="titsimb">
+            <p>Saídas</p>
+            <img src="img/Tipo=arrow-circle-down-regular.png" alt="">
+          </div>
+          <p class="valor"> R$ 1.259,00 </p>
+          <p class="ultima-transacao">Última transação em 13 de abril</p>
+        </div>
+
+        <!-- Total -->
+        <div class="quanto total">
+          <div class="titsimb">
+            <p>Total</p>
+            <img src="img/Tipo=currency-dollar-regular.png" alt="">
+          </div>
+          <p class="valor"> R$ 16.141,00 </p>    
+          <p class="ultima-transacao">Última transação em 13 de abril</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Transação / 4 itens -->
+    <div class="transacao-info">
+      <p>Transações</p>
+      <span>4 itens</span>
+    </div>
+
+    <!--  Busque uma transação  -->
+    <section class="busca">
+      <input type="text" id="searchInput" class="input-busca" placeholder="Busque uma transação">
+      <button class="search-button">
+        <img src="img/Icons.png" alt="lupa" class="lupa">
+        Buscar
+      </button>
+    </section>
+
+    <!--  Tabela  -->
+    <main class="tabela">
+      
+      <div class="linha-tabela">
+        <p>Desenvolvimento de site</p>
+        <p class="positivo">R$ 12.000,00</p>
+        <p>Venda</p>
+        <p>13/04/2022</p>
+      </div>
+      
+      <div class="linha-tabela">
+        <p>Hamburguer</p>
+        <p class="negativo">- R$ 59,00</p>
+        <p>Alimentação</p>
+        <p>10/04/2022</p>
+      </div>
+      
+      <div class="linha-tabela">
+        <p>Aluguel do apartamento</p>
+        <p class="negativo">- R$ 1.200,00</p>
+        <p>Casa</p>
+        <p>27/03/2022</p>
+      </div>
+      
+      <div class="linha-tabela">
+        <p>Computador</p>
+        <p class="positivo">R$ 5.400,00</p>
+        <p>Venda</p>
+        <p>15/03/2022</p>
+      </div>
+
+      <div class="linha-tabela">
+        <p>Desenvolvimento de site</p>
+        <p class="positivo">R$ 8.000,00</p>
+        <p>Alimentação</p>
+        <p>13/03/2022</p>
+      </div>
+
+      <div class="linha-tabela">
+        <p>Janta</p>
+        <p class="negativo">- R$ 39,00</p>
+        <p>Alimentação</p>
+        <p>10/03/2022</p>
+      </div>
+
+      <div class="linha-tabela">
+        <p>Aluguel do apartamento</p>
+        <p class="negativo">- R$ 1.200,00</p>
+        <p>Casa</p>
+        <p>27/02/2022</p>
+      </div>
+
+      <div class="linha-tabela">
+        <p>Salário</p>
+        <p class="positivo">R$ 5.400,00</p>
+        <p>Salário</p>
+        <p>15/02/2022</p>
+      </div>
+
+      <div class="linha-tabela">
+        <p>Almoço</p>
+        <p class="negativo">- R$ 30,00</p>
+        <p>Alimentação</p>
+        <p>05/02/2022</p>
+      </div>
+
+      <div class="linha-tabela">
+        <p>Fone de ouvido</p>
+        <p class="negativo">- R$ 150,00</p>
+        <p>Itens</p>
+        <p>02/02/2022</p>
+      </div>
+    </main>
+  </div>
+  
+  <!--  Popup  -->
+  <div id="modal-overlay" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Nova transação</h2>
+        <button class="modal-close">
+          <img src="img/Tipo=x-regular.png" alt="Fechar">
+        </button>
+      </div>
+      <form class="modal-form">
+        <input type="text" placeholder="Descrição" class="modal-input">
+        <input type="text" placeholder="Preço" class="modal-input">
+        <input type="text" placeholder="Categoria" class="modal-input">
+        
+        <div class="transaction-type-selection">
+          <label class="radio-button-label">
+            <input type="radio" name="transaction-type" value="entrada" checked>
+            <div class="custom-radio-button entrada-type">
+              <img src="img/Tipo=arrow-circle-up-regular.png" alt="Entrada">
+              <span>Entrada</span>
+        </div>
+          </label>
+          <label class="radio-button-label">
+            <input type="radio" name="transaction-type" value="saida">
+            <div class="custom-radio-button saida-type">
+              <img src="img/Tipo=arrow-circle-down-regular.png" alt="Saída">
+              <span>Saída</span>
+            </div>
+          </label>
+        </div>
+
+        <button type="submit" class="modal-submit-button">Cadastrar</button>
+      </form>
+    </div>
+  </div>
+  <!-- FIM: Estrutura completa do popup adicionada -->
+
+</body>
+</html>
